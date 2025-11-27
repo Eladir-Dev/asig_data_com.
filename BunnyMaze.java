@@ -114,7 +114,7 @@ public class BunnyMaze {
             }
             System.out.println();
         }
-        System.out.println("1 = camino, 0 = obstáculo, 2 = libre no usado");
+        System.out.println("1 = camino, 0 = obstaculo, 2 = libre no usado");
     }
 
     public static void main(String[] args) {
@@ -131,3 +131,4 @@ public class BunnyMaze {
         print(solution);
     }
 }
+
