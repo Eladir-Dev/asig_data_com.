@@ -11,8 +11,8 @@ public class BunnyMaze {
         this.cols = maze[0].length;
     }
 
-    // Devuelve la matriz solución con:
-    //  - 0: obstáculo
+    // Devuelve la matriz solucion con:
+    //  - 0: obstaculo
     //  - 1: celdas del camino elegido
     //  - 2: celdas libres no utilizadas
     // Si no hay camino, devuelve null.
@@ -84,7 +84,7 @@ public class BunnyMaze {
                 case 1 -> // izquierda
                     j = j - 1;
                 default -> {
-                    // Defensive: por si algo raro pasó
+                    // Defensive: por si algo raro paso
                     return null;
                 }
             }
@@ -131,4 +131,5 @@ public class BunnyMaze {
         print(solution);
     }
 }
+
 
