@@ -26,9 +26,9 @@ public class MaxRun {
 		printMatrix(map);
 		System.out.println("Posible paths: " + posiblePaths(map));
 		System.out.println("Shortest path:");
-		int[][] solution = shortestPath(map);
+		int[][] solution = longestPath(map);
 		printMatrix(solution);
-		System.out.println("1 = shortest path");
+		System.out.println("1 = longest path");
 		System.out.println("pathCost: " + getPathCost(solution, map));
 		
 	}
@@ -160,6 +160,71 @@ public class MaxRun {
         		}
         		if (bestPathCost > pathCost) {
         			bestPathCost = pathCost;
+        			solution = tempSolution;
+        		}
+        }
+        
+        return solution;
+	}
+	public static int[][] longestPath(int[][] matrix) {
+		int rows = matrix.length;
+		int cols = matrix[0].length;
+		
+		int[][] solution = new int[rows][cols];
+		// fills the solution matrix with 0.
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                solution[r][c] = 0;
+            }
+        }        
+        
+        
+        List<String> paths = new ArrayList<>(); // all possible paths
+        getPaths(0,0,rows, cols, "", paths);
+        
+        int maxPathCost = 0;
+        for (String path : paths) {
+        		int i=0,
+        			j=0,
+        			pathCost=0;
+        		char[] tempPath = path.toCharArray();
+        		
+        		// fills tempSolution with 0
+        		int[][] tempSolution = new int[rows][cols];
+                for (int r = 0; r < rows; r++) {
+                    for (int c = 0; c < cols; c++) {
+                        tempSolution[r][c] = 0;
+                    }
+                }
+                
+                tempSolution[i][j] = 1;
+             pathCost += matrix[i][j];
+
+            // travels the determined path
+        		for (char direction : tempPath) {
+        			switch (direction) {
+        			case 'R':
+        				if (j != cols-1) {
+        					j++;
+        					tempSolution[i][j] = 1;
+        					pathCost += matrix[i][j];
+        				}
+        				break;
+        			case 'D':
+        				if (i != rows-1) {
+        					i++;
+        					tempSolution[i][j] = 1;
+	    					pathCost += matrix[i][j];
+        				}
+        				break;
+        			default: // if path string contains something other than 'R' and 'D'.
+        				System.err.println("Error: Their was a problem finding the solution.");
+        				System.err.println("Error val: " + direction);
+        				System.exit(1);
+        			}
+        		}
+        		if (maxPathCost < pathCost) {
+        			maxPathCost = pathCost;
         			solution = tempSolution;
         		}
         }
