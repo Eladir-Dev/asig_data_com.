@@ -25,7 +25,7 @@ public class MaxRun {
 		System.out.println("Original matrix:");
 		printMatrix(map);
 		System.out.println("Posible paths: " + posiblePaths(map));
-		System.out.println("Shortest path:");
+		System.out.println("Longest path:");
 		int[][] solution = longestPath(map);
 		printMatrix(solution);
 		System.out.println("1 = longest path");
@@ -166,6 +166,12 @@ public class MaxRun {
         
         return solution;
 	}
+	/**
+	 * This method returns a matrix with 1s and 0s.
+	 * 1 = path and 0 = not best path
+	 * @param matrix - Matrix to find longest path
+	 * @return New matrix with solution
+	 */
 	public static int[][] longestPath(int[][] matrix) {
 		int rows = matrix.length;
 		int cols = matrix[0].length;
